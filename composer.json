@@ -25,9 +25,9 @@
   ],
   "require": {
     "php": ">=5.3",
-    "usabilitydynamics/lib-settings": "*",
-    "usabilitydynamics/lib-ui": "*",
-    "usabilitydynamics/lib-utility": "*"
+    "usabilitydynamics/lib-settings": "master",
+    "usabilitydynamics/lib-ui": "master",
+    "usabilitydynamics/lib-utility": "master"
   },
   "autoload": {
     "classmap": [
