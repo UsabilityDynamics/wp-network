@@ -17,12 +17,14 @@ namespace UsabilityDynamics\Network {
     class List_Table extends \WP_List_Table {
 
       function __construct() {
+
         parent::__construct( array(
           'plural'   => 'networks',
           'singular' => 'network',
           'ajax'     => false,
-          'screen'   => 'wpmn',
+          'screen'   => 'wpmn'
         ) );
+
       }
 
       function ajax_user_can() {
@@ -149,6 +151,7 @@ namespace UsabilityDynamics\Network {
       }
 
       function get_columns() {
+
         return apply_filters( 'wpmn_networks_columns', array(
           'cb'       => '<input type="checkbox" />',
           'sitename' => __( 'Site Name' ),
@@ -157,6 +160,7 @@ namespace UsabilityDynamics\Network {
           'blogs'    => __( 'Sites' ),
           'admins'   => __( 'Network Admins' )
         ) );
+
       }
 
       function get_sortable_columns() {
@@ -222,7 +226,7 @@ namespace UsabilityDynamics\Network {
                 <?php
 
                 $actions = array(
-                  'network_admin' => '<span class="edit"><a href="' . $siteurl . 'wp-admin/network/" title="' . __( 'Network Admin' ) . '">' . __( 'Network Admin' ) . '</a></span>',
+                  //'network_admin' => '<span class="edit"><a href="' . $siteurl . 'wp-admin/network/" title="' . __( 'Network Admin' ) . '">' . __( 'Network Admin' ) . '</a></span>',
                   'assign_sites'  => '<span class="edit"><a href="' . add_query_arg( array( 'action' => 'assignblogs' ), $myurl ) . '" title="' . __( 'Assign sites to this network' ) . '">' . __( 'Assign Sites' ) . '</a></span>',
                   'edit'          => '<span class="edit"><a class="edit_network_link" href="' . add_query_arg( array( 'action' => 'editnetwork' ), $myurl ) . '" title="' . __( 'Edit this network' ) . '">' . __( 'Edit' ) . '</a></span>',
                 );

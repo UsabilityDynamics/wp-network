@@ -31,6 +31,7 @@
   "autoload": {
     "classmap": [
       "lib/class-bootstrap.php",
+      "lib/class-utility.php",
       "lib/class-list-table.php"
     ]
   }

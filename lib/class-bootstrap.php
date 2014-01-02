@@ -256,7 +256,7 @@ namespace UsabilityDynamics\Network {
       function admin_menu() {
 
         // If the user is super admin on another Network, don't require elevated permissions on the current Site
-        if( user_has_networks() ) {
+        if( Utility::user_has_networks() ) {
           add_dashboard_page( esc_html__( 'My Networks' ), esc_html__( 'My Networks' ), 'read', 'my-networks', array( $this, 'my_networks_page' ) );
         }
       }
@@ -422,7 +422,6 @@ namespace UsabilityDynamics\Network {
         ) ); ?>
 
         <div class="wrap">
-			<?php screen_icon( 'ms-admin' ); ?>
           <h2><?php esc_html_e( 'Networks' ); ?></h2>
 
 			<div id="col-container">
@@ -452,7 +451,7 @@ namespace UsabilityDynamics\Network {
 
         if( isset( $_POST[ 'move' ] ) && isset( $_GET[ 'blog_id' ] ) ) {
           if( isset( $_POST[ 'from' ] ) && isset( $_POST[ 'to' ] ) ) {
-            move_site( $_GET[ 'blog_id' ], $_POST[ 'to' ] );
+            Utility::move_site( $_GET[ 'blog_id' ], $_POST[ 'to' ] );
             $_GET[ 'moved' ]  = 'yes';
             $_GET[ 'action' ] = 'saved';
           }
@@ -553,14 +552,14 @@ namespace UsabilityDynamics\Network {
           $current_blogs = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM {$wpdb->blogs} WHERE site_id = %d", (int) $_GET[ 'id' ] ) );
 
           foreach( $sites as $site ) {
-            move_site( $site, (int) $_GET[ 'id' ] );
+            Utility::move_site( $site, (int) $_GET[ 'id' ] );
           }
 
           /* true sync - move any unlisted blogs to 'zero' network */
           if( ENABLE_NETWORK_ZERO ) {
             foreach( $current_blogs as $current_blog ) {
               if( !in_array( $current_blog->blog_id, $sites ) ) {
-                move_site( $current_blog->blog_id, 0 );
+                Utility::move_site( $current_blog->blog_id, 0 );
               }
             }
           }
@@ -680,10 +679,10 @@ namespace UsabilityDynamics\Network {
           if( isset( $_POST[ 'options_to_clone' ] ) && is_array( $_POST[ 'options_to_clone' ] ) ) {
             $options_to_clone = array_keys( $_POST[ 'options_to_clone' ] );
           } else {
-            $options_to_clone = array_keys( network_options_to_copy() );
+            $options_to_clone = array_keys( Utility::network_options_to_copy() );
           }
 
-          $result = add_network(
+          $result = Utility::add_network(
             $_POST[ 'domain' ],
             $_POST[ 'path' ],
             ( isset( $_POST[ 'newSite' ] ) ? $_POST[ 'newSite' ] : esc_attr__( 'New Network Created' ) ),
@@ -693,10 +692,10 @@ namespace UsabilityDynamics\Network {
 
           if( $result && !is_wp_error( $result ) ) {
             if( !empty( $_POST[ 'name' ] ) ) {
-              switch_to_network( $result );
+              Utility::switch_to_network( $result );
               add_site_option( 'site_name', $_POST[ 'name' ] );
               add_site_option( 'active_sitewide_plugins', array( 'wp-multi-network/wpmn-loader.php' => time() ) );
-              restore_current_network();
+              Utility::restore_current_network();
             }
 
             $_GET[ 'added' ]  = 'yes';
@@ -719,7 +718,7 @@ namespace UsabilityDynamics\Network {
             die( esc_html__( 'Invalid network id.' ) );
           }
 
-          update_network( (int) $_GET[ 'id' ], $_POST[ 'domain' ], $_POST[ 'path' ] );
+          Utility::update_network( (int) $_GET[ 'id' ], $_POST[ 'domain' ], $_POST[ 'path' ] );
 
           $_GET[ 'updated' ] = 'true';
           $_GET[ 'action' ]  = 'saved';
@@ -764,7 +763,7 @@ namespace UsabilityDynamics\Network {
         global $wpdb;
 
         if( isset( $_POST[ 'delete' ] ) && isset( $_GET[ 'id' ] ) ) {
-          $result = delete_network( (int) $_GET[ 'id' ], ( isset( $_POST[ 'override' ] ) ) );
+          $result = Utility::delete_network( (int) $_GET[ 'id' ], ( isset( $_POST[ 'override' ] ) ) );
 
           if( is_wp_error( $result ) ) {
             wp_die( $result->get_error_message() );
@@ -821,7 +820,7 @@ namespace UsabilityDynamics\Network {
 
         if( isset( $_POST[ 'delete_multiple' ] ) && isset( $_POST[ 'deleted_networks' ] ) ) {
           foreach( $_POST[ 'deleted_networks' ] as $deleted_network ) {
-            $result = delete_network( (int) $deleted_network, ( isset( $_POST[ 'override' ] ) ) );
+            $result = Utility::delete_network( (int) $deleted_network, ( isset( $_POST[ 'override' ] ) ) );
             if( is_a( $result, 'WP_Error' ) ) {
               wp_die( $result->get_error_message() );
             }
@@ -838,7 +837,7 @@ namespace UsabilityDynamics\Network {
 
           // ensure each network is valid
           foreach( $allnetworks as $network ) {
-            if( !network_exists( (int) $network ) ) {
+            if( !Utility::network_exists( (int) $network ) ) {
               wp_die( esc_html__( 'You have selected an invalid network for deletion.' ) );
             }
           }
@@ -926,7 +925,7 @@ namespace UsabilityDynamics\Network {
 			<h2><?php esc_html_e( 'My Networks' ); ?></h2>
 
           <?php
-          $my_networks = user_has_networks();
+          $my_networks = Utility::user_has_networks();
           foreach( $my_networks as $key => $network_id ) {
             $my_networks[ $key ] = $wpdb->get_row( $wpdb->prepare(
               'SELECT s.*, sm.meta_value as site_name, b.blog_id FROM ' . $wpdb->site . ' s LEFT JOIN ' . $wpdb->sitemeta . ' as sm ON sm.site_id = s.id AND sm.meta_key = %s LEFT JOIN ' . $wpdb->blogs . ' b ON s.id = b.site_id WHERE s.id = %d',
