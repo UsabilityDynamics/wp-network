@@ -982,6 +982,40 @@ namespace UsabilityDynamics\Network {
       }
 
       /**
+       * Get Setting.
+       *
+       *    // Get Setting
+       *    Cluster::get( 'my_key' )
+       *
+       * @method get
+       *
+       * @for Flawless
+       * @author potanin@UD
+       * @since 0.1.1
+       */
+      public static function get( $key, $default = null ) {
+        return self::$instance->_settings ? self::$instance->_settings->get( $key, $default ) : null;
+      }
+
+      /**
+       * Set Setting.
+       *
+       * @usage
+       *
+       *    // Set Setting
+       *    Cluster::set( 'my_key', 'my-value' )
+       *
+       * @method get
+       * @for Flawless
+       *
+       * @author potanin@UD
+       * @since 0.1.1
+       */
+      public static function set( $key, $value = null ) {
+        return self::$instance->_settings ? self::$instance->_settings->set( $key, $value ) : null;
+      }
+
+      /**
        * Get the WP-Simplify Singleton
        *
        * Concept based on the CodeIgniter get_instance() concept.
