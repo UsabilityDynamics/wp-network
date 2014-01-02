@@ -6,9 +6,6 @@
  * @subpackage Functions
  */
 
-// Exit if accessed directly
-if( !defined( 'ABSPATH' ) ) exit;
-
 /**
  * Check to see if a network exists. Will check the networks object before
  * checking the database.
