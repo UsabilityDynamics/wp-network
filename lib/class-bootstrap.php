@@ -19,7 +19,7 @@ namespace UsabilityDynamics\Network {
      * @property $version
      * @type {Object}
      */
-    public static $version = '1.0.0';
+    public static $version = '0.1.0';
 
     /**
      * Textdomain String
