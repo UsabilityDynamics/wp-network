@@ -16,21 +16,30 @@ namespace UsabilityDynamics\Network {
      */
     class List_Table extends \WP_List_Table {
 
+      /**
+       *
+       */
       function __construct() {
 
         parent::__construct( array(
           'plural'   => 'networks',
           'singular' => 'network',
           'ajax'     => false,
-          'screen'   => 'wpmn'
-        ) );
+          'screen'   => 'wp-networks'
+        ));
 
       }
 
+      /**
+       * @return bool|void
+       */
       function ajax_user_can() {
         return current_user_can( 'manage_network_options' );
       }
 
+      /**
+       *
+       */
       function prepare_items() {
         global $s, $mode, $wpdb, $current_site;
 
@@ -132,10 +141,16 @@ namespace UsabilityDynamics\Network {
         ) );
       }
 
+      /**
+       *
+       */
       function no_items() {
         _e( 'No networks found.' );
       }
 
+      /**
+       * @return array
+       */
       function get_bulk_actions() {
         $actions = array();
 
@@ -146,23 +161,31 @@ namespace UsabilityDynamics\Network {
         return $actions;
       }
 
+      /**
+       * @param $which
+       */
       function pagination( $which ) {
         parent::pagination( $which );
       }
 
+      /**
+       * @return array|mixed|void
+       */
       function get_columns() {
 
         return apply_filters( 'wpmn_networks_columns', array(
           'cb'       => '<input type="checkbox" />',
           'sitename' => __( 'Site Name' ),
           'domain'   => __( 'Domain' ),
-          'path'     => __( 'Path' ),
           'blogs'    => __( 'Sites' ),
           'admins'   => __( 'Network Admins' )
         ) );
 
       }
 
+      /**
+       * @return array
+       */
       function get_sortable_columns() {
         return array(
           'sitename' => 'sitename',
@@ -171,6 +194,9 @@ namespace UsabilityDynamics\Network {
         );
       }
 
+      /**
+       *
+       */
       function display_rows() {
         global $current_site;
 
@@ -200,16 +226,10 @@ namespace UsabilityDynamics\Network {
               case 'domain':
                 echo "<td class='column-$column_name $column_name'$style>"; ?>
                 <?php echo esc_html( $network[ 'domain' ] ); ?>
+                <?php echo $network[ 'path' ] != '/' ? esc_html( $network[ 'path' ] ) : ''; ?>
                 </td>
                 <?php
-                break;
-
-              case 'path':
-                echo "<td class='column-$column_name $column_name'$style>"; ?>
-                <?php echo esc_html( $network[ 'path' ] ); ?>
-                </td>
-                <?php
-                break;
+              break;
 
               case 'sitename':
                 echo "<td class='column-$column_name $column_name'$style>";
@@ -249,7 +269,7 @@ namespace UsabilityDynamics\Network {
               case 'blogs':
                 echo "<td valign='top' class='$column_name column-$column_name'$style>";
                 ?>
-                <a href="http://<?php echo $network[ 'domain' ] . $network[ 'blog_path' ]; ?>wp-admin/network/sites.php" title="<?php _e( 'Sites on this network' ); ?>"><?php echo $network[ 'blogs' ] ?></a>
+                <a href="<?php switch_to_blog( $network[ 'site_id' ] ); echo network_admin_url( 'sites.php' ); restore_current_blog(); ?>" title="<?php _e( 'Sites on this network' ); ?>"><?php echo $network[ 'blogs' ] ?></a>
                 </td>
                 <?php
                 break;
