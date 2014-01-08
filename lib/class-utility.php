@@ -597,7 +597,7 @@ namespace UsabilityDynamics\Network {
        *
        * @return array | FALSE
        */
-      function user_has_networks( $user_id = 0 ) {
+      public static function user_has_networks( $user_id = 0 ) {
         global $wpdb;
 
         // Use current user
