@@ -401,6 +401,8 @@ function update_network( $id, $domain, $path = '' ) {
  * @param         integer id ID of network to delete
  * @param boolean $delete_blogs Flag to permit blog deletion - default setting
  *                               of false will prevent deletion of occupied networks
+ *
+ * @return \WP_Error
  */
 function delete_network( $id, $delete_blogs = false ) {
   global $wpdb;
