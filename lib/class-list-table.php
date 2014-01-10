@@ -178,7 +178,7 @@ namespace UsabilityDynamics\Network {
           'sitename' => __( 'Site Name' ),
           'domain'   => __( 'Domain' ),
           'blogs'    => __( 'Sites' ),
-          'admins'   => __( 'Network Admins' )
+          //'admins'   => __( 'Network Admins' )
         ) );
 
       }
@@ -246,8 +246,8 @@ namespace UsabilityDynamics\Network {
                 <?php
 
                 $actions = array(
-                  //'network_admin' => '<span class="edit"><a href="' . $siteurl . 'wp-admin/network/" title="' . __( 'Network Admin' ) . '">' . __( 'Network Admin' ) . '</a></span>',
-                  'assign_sites'  => '<span class="edit"><a href="' . add_query_arg( array( 'action' => 'assignblogs' ), $myurl ) . '" title="' . __( 'Assign sites to this network' ) . '">' . __( 'Assign Sites' ) . '</a></span>',
+                  'network_admin' => '<span class="edit"><a href="' . $siteurl . 'wp-admin/network/" title="' . __( 'Network Admin' ) . '">' . __( 'Manage' ) . '</a></span>',
+                  'assign_sites'  => '<span class="edit"><a href="' . add_query_arg( array( 'action' => 'assignblogs' ), $myurl ) . '" title="' . __( 'Assign sites to this network' ) . '">' . __( 'Sites' ) . '</a></span>',
                   'edit'          => '<span class="edit"><a class="edit_network_link" href="' . add_query_arg( array( 'action' => 'editnetwork' ), $myurl ) . '" title="' . __( 'Edit this network' ) . '">' . __( 'Edit' ) . '</a></span>',
                 );
 

@@ -393,7 +393,7 @@ namespace UsabilityDynamics\Network {
             $option_table = $wpdb->get_blog_prefix( $site->blog_id ) . 'options';
 
             // Loop through options and correct a few of them
-            foreach( network_options_list() as $option_name ) {
+            foreach( Utility::network_options_list() as $option_name ) {
               $option_value = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$option_table} WHERE option_name = %s", $option_name ) );
               if( !empty( $option_value ) ) {
                 $new_value = str_replace( $old_path, $full_path, $option_value->option_value );
@@ -543,7 +543,7 @@ namespace UsabilityDynamics\Network {
         $new_domain    = $new_network->domain . $new_network->path;
 
         // Update all site options
-        foreach( network_options_list() as $option_name ) {
+        foreach( Utility::network_options_list() as $option_name ) {
           $option    = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $options_table WHERE option_name = %s", $option_name ) );
           $new_value = str_replace( $old_domain, $new_domain, $option->option_value );
           update_blog_option( $site->blog_id, $option_name, $new_value );
@@ -559,7 +559,7 @@ namespace UsabilityDynamics\Network {
        * @return array
        */
       function network_options_list() {
-        return apply_filters( 'network_options_list', array(
+        return (array) apply_filters( 'network_options_list', array(
           'siteurl',
           'home',
           'fileupload_url'
