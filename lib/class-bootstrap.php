@@ -336,7 +336,7 @@ namespace UsabilityDynamics\Network {
 
         $this->feedback(); ?>
 
-        <div class="wrap" style="position: relative">
+        <div class="wrap">
 
 		<?php
 
