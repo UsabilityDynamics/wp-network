@@ -70,8 +70,8 @@ namespace UsabilityDynamics\Network {
       public function __construct() {
 
         // Set Variables
-        self::$path = untrailingslashit( plugin_dir_path( dirname( __FILE__ ) ) );
-        self::$url  = untrailingslashit( plugin_dir_url( dirname( __FILE__ ) ) );
+        self::$path = untrailingslashit( plugin_dir_path( dirname( __DIR__ ) ) );
+        self::$url  = untrailingslashit( plugin_dir_url( dirname( __DIR__ ) ) );
 
         // Initialize hooks.
         // add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
@@ -114,9 +114,9 @@ namespace UsabilityDynamics\Network {
         define( 'NETWORKS_PER_PAGE', 10 );
 
         $this->file       = __FILE__;
-        $this->basename   = plugin_basename( $this->file );
-        $this->plugin_dir = plugin_dir_path( $this->file );
-        $this->plugin_url = plugin_dir_url( $this->file );
+        $this->basename   = plugin_basename( dirname( __DIR__ ) );
+        $this->plugin_dir = plugin_dir_path( dirname( __DIR__ ) );
+        $this->plugin_url = plugin_dir_url( dirname( __DIR__ ) );
 
         if( is_network_admin() || is_admin() ) {
 
