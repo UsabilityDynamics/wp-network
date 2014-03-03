@@ -111,7 +111,9 @@ namespace UsabilityDynamics\Network {
           define( 'RESCUE_ORPHANED_BLOGS', false );
         }
 
-        define( 'NETWORKS_PER_PAGE', 10 );
+        if( !defined( 'NETWORKS_PER_PAGE' ) ) {
+          define( 'NETWORKS_PER_PAGE', 10 );
+        }
 
         $this->file       = __FILE__;
         $this->basename   = plugin_basename( dirname( __DIR__ ) );
