@@ -583,12 +583,15 @@ namespace UsabilityDynamics\Network {
           }
 
           foreach( $sites as $key => $site ) {
-            $table_name = $wpdb->get_blog_prefix( $site->blog_id ) . "options";
-            $site_name  = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$table_name} WHERE option_name = %s", 'blogname' ) );
+            //die( '<pre>' . print_r( $site, true ) . '</pre>' );
+            //$table_name = $wpdb->get_blog_prefix( $site->blog_id ) . "options";
+            //$site_name  = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM {$wpdb->sitemeta} WHERE site_id = %d AND meta_key = %s", $site->site_id, 'site_name' ) );
+            //die($wpdb->last_query);
+            //die( '<pre>' . print_r( $site, true ) . '</pre>' );
 
-            if( empty( $site_name ) ) {
-              die( esc_html__( 'Invalid blog.' ) );
-            }
+            //if( empty( $site_name ) ) {
+            //  die( esc_html__( 'Invalid blog.' ) );
+            //}
 
             $sites[ $key ]->name = stripslashes( $site_name->option_value );
           }
@@ -596,7 +599,6 @@ namespace UsabilityDynamics\Network {
           ?>
           <div class="wrap">
 				<form method="post" id="site-assign-form" action="<?php echo $_SERVER[ 'REQUEST_URI' ]; ?>">
-					<?php screen_icon( 'ms-admin' ); ?>
           <h2><?php esc_html_e( 'Networks' ); ?></h2>
 					<h3><?php esc_html_e( 'Assign Sites to' ); ?>
             : http://<?php echo esc_html( $network->domain . $network->path ); ?></h3>
@@ -613,11 +615,11 @@ namespace UsabilityDynamics\Network {
 						</thead>
 						<tr>
 							<td>
-								<select name="from[]" id="from" multiple style="height: auto; width: 98%;">
+								<select name="from[]" id="from" multiple style="height: auto; width: 98%;min-height: 20em;">
 								<?php
                 foreach( $sites as $site ) {
                   if( $site->site_id != $network->id ) {
-                    echo '<option value="' . esc_attr( $site->blog_id ) . '">' . esc_html( sprintf( '%1$s (%2$s%3$s)', $site->name, $site->domai, $site->path ) ) . '</option>';
+                    echo '<option value="' . esc_attr( $site->blog_id ) . '">' . esc_html( sprintf( '%1$s%2$s', $site->domain, $site->path ) ) . '</option>';
                   }
                 }
                 ?>
@@ -642,7 +644,7 @@ namespace UsabilityDynamics\Network {
                   if( ENABLE_NETWORK_ZERO ) :
                     foreach( $sites as $site ) :
                       if( $site->site_id === $network->id ) :
-                        echo '<option value="' . esc_attr( $site->blog_id ) . '">' . esc_html( sprintf( '%1$s (%2$s%3$s)', $site->name, $site->domai, $site->path ) ) . '</option>';
+                        echo '<option value="' . esc_attr( $site->blog_id ) . '">' . esc_html( sprintf( '%1$s (%2$s%3$s)', $site->name, $site->domain, $site->path ) ) . '</option>';
                       endif;
                     endforeach;
                   endif;
