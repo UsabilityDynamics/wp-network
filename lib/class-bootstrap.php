@@ -69,6 +69,11 @@ namespace UsabilityDynamics\Network {
        */
       public function __construct() {
 
+        // Check if being called too early, such as during Unit Testing.
+        if( !function_exists( 'did_action' ) ) {
+          return $this;
+        }
+
         // Set Variables
         self::$path = untrailingslashit( plugin_dir_path( dirname( __DIR__ ) ) );
         self::$url  = untrailingslashit( plugin_dir_url( dirname( __DIR__ ) ) );
