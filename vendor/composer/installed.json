@@ -1,0 +1,115 @@
+[
+    {
+        "name": "usabilitydynamics/lib-utility",
+        "version": "master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "git@github.com:UsabilityDynamics/lib-utility",
+            "reference": "master"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/usabilitydynamics/lib-utility/archive/master.zip",
+            "reference": null,
+            "shasum": null
+        },
+        "require-dev": {
+            "phpunit/phpunit": "4.1.*"
+        },
+        "type": "library",
+        "extra": {
+            "installer-name": "lib-utility",
+            "component": {
+                "name": "utility",
+                "scripts": [
+                    "scripts/*.js"
+                ]
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "classmap": [
+                "lib"
+            ]
+        }
+    },
+    {
+        "name": "usabilitydynamics/lib-settings",
+        "version": "master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "git@github.com:UsabilityDynamics/lib-settings",
+            "reference": "master"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/usabilitydynamics/lib-settings/archive/master.zip",
+            "reference": null,
+            "shasum": null
+        },
+        "require": {
+            "usabilitydynamics/lib-utility": "*"
+        },
+        "require-dev": {
+            "justinrainbow/json-schema": "1.1.*"
+        },
+        "type": "library",
+        "extra": {
+            "component": {
+                "scripts": [
+                    "scripts/settings.js"
+                ],
+                "templates": [
+                    "views/new-installation.xhtml"
+                ]
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "classmap": [
+                "lib"
+            ]
+        }
+    },
+    {
+        "name": "usabilitydynamics/lib-ui",
+        "version": "master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "git@github.com:UsabilityDynamics/lib-ui",
+            "reference": "master"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/usabilitydynamics/lib-ui/archive/master.zip",
+            "reference": null,
+            "shasum": null
+        },
+        "require": {
+            "usabilitydynamics/lib-utility": "master"
+        },
+        "type": "library",
+        "extra": {
+            "component": {
+                "scripts": [
+                    "scripts/ui.js",
+                    "scripts/ui.markdown.js",
+                    "scripts/ui.jquery-tabs.js"
+                ],
+                "styles": [
+                    "styles/ui.css",
+                    "styles/ui.less"
+                ]
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "classmap": [
+                "lib"
+            ]
+        }
+    }
+]

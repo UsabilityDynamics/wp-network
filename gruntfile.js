@@ -156,11 +156,11 @@ module.exports = function build( grunt ) {
   // Register tasks
   grunt.registerTask( 'default', [ 'markdown', 'less' , 'yuidoc', 'uglify' ] );
 
-  // Build Distribution
-  grunt.registerTask( 'distribution', [] );
-
   // Update Environment
   grunt.registerTask( 'update', [ "clean:update", "shell:update" ] );
+
+  grunt.registerTask( 'install', [ 'default' ] );
+  grunt.registerTask( 'build', [ 'default' ] );
 
   // Clean, preparing for update
   grunt.registerTask( 'clean', [  ] );

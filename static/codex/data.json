@@ -1,7 +1,7 @@
 {
     "project": {
         "name": "usabilitydynamics/wp-network",
-        "description": "WordPress NNetwork",
+        "description": "WordPress Network",
         "version": "0.1.0",
         "url": "https://github.com/UsabilityDynamics/wp-network"
     },
