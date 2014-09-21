@@ -4,36 +4,92 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e3f0231c89d38d09288bd4baf08c9a05",
+    "hash": "e9fdee1b9aa21366a2c34486440bf7e9",
     "packages": [
         {
-            "name": "usabilitydynamics/lib-settings",
-            "version": "master",
+            "name": "justinrainbow/json-schema",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
-                "url": "git@github.com:UsabilityDynamics/lib-settings",
-                "reference": "master"
+                "url": "https://github.com/justinrainbow/json-schema.git",
+                "reference": "05ff6d8d79fe3ad190b0663d80d3f9deee79416c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/usabilitydynamics/lib-settings/archive/master.zip",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/05ff6d8d79fe3ad190b0663d80d3f9deee79416c",
+                "reference": "05ff6d8d79fe3ad190b0663d80d3f9deee79416c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "JsonSchema": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "NewBSD"
+            ],
+            "authors": [
+                {
+                    "name": "Igor Wiedler",
+                    "email": "igor@wiedler.ch",
+                    "homepage": "http://wiedler.ch/igor/"
+                },
+                {
+                    "name": "Bruno Prieto Reis",
+                    "email": "bruno.p.reis@gmail.com"
+                },
+                {
+                    "name": "Justin Rainbow",
+                    "email": "justin.rainbow@gmail.com"
+                },
+                {
+                    "name": "Robert Schönthal",
+                    "email": "robert.schoenthal@gmail.com",
+                    "homepage": "http://digitalkaoz.net"
+                }
+            ],
+            "description": "A library to validate a json schema.",
+            "homepage": "https://github.com/justinrainbow/json-schema",
+            "keywords": [
+                "json",
+                "schema"
+            ],
+            "time": "2012-01-03 00:33:17"
+        },
+        {
+            "name": "usabilitydynamics/lib-settings",
+            "version": "0.2.2",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:UsabilityDynamics/lib-settings",
+                "reference": "0.2.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/UsabilityDynamics/lib-settings/archive/0.2.2.zip",
                 "reference": null,
                 "shasum": null
             },
             "require": {
+                "justinrainbow/json-schema": "1.1.*",
                 "usabilitydynamics/lib-utility": "*"
-            },
-            "require-dev": {
-                "justinrainbow/json-schema": "1.1.*"
             },
             "type": "library",
             "extra": {
                 "component": {
                     "scripts": [
-                        "scripts/settings.js"
+                        "static/scripts/settings.js"
                     ],
                     "templates": [
-                        "views/new-installation.xhtml"
+                        "static/views/new-installation.xhtml"
+                    ],
+                    "files": [
+                        "static/schemas/settings.json"
                     ]
                 }
             },
@@ -41,7 +97,34 @@
                 "classmap": [
                     "lib"
                 ]
-            }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andy Potanin",
+                    "email": "andy.potanin@usabilitydynamics.com",
+                    "homepage": "http://usabilitydynamics.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Maxim Peshkov",
+                    "email": "maxim.peshkov@usabilitydynamics.com",
+                    "homepage": "http://usabilitydynamics.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Anton Korotkov",
+                    "email": "anton.korotkov@usabilitydynamics.com",
+                    "homepage": "http://usabilitydynamics.com",
+                    "role": "Developer"
+                }
+            ],
+            "homepage": "http://github.com/usabilitydynamics/lib-settings",
+            "keywords": [
+                "settings"
+            ]
         },
         {
             "name": "usabilitydynamics/lib-ui",
@@ -78,7 +161,8 @@
                 "classmap": [
                     "lib"
                 ]
-            }
+            },
+            "time": "2014-07-23 11:51:09"
         },
         {
             "name": "usabilitydynamics/lib-utility",
@@ -111,7 +195,8 @@
                 "classmap": [
                     "lib"
                 ]
-            }
+            },
+            "time": "2014-09-18 13:23:04"
         }
     ],
     "packages-dev": [],
