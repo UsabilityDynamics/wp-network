@@ -22,9 +22,16 @@
       "url": "http://repository.usabilitydynamics.com"
     }
   ],
+  "config": {
+    "preferred-install": "source",
+    "github-protocols": [ "ssh" ],
+    "vendor-dir": "vendor/libraries",
+    "bin-dir": "vendor/bin",
+    "optimize-autoloader": true
+  },
   "require": {
     "php": ">=5.3",
-    "usabilitydynamics/lib-settings": "master",
+    "usabilitydynamics/lib-settings": "0.2.2",
     "usabilitydynamics/lib-ui": "master",
     "usabilitydynamics/lib-utility": "master"
   },

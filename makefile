@@ -24,6 +24,13 @@ push:
 	git commit -m '[ci skip]'
 	git push
 
+# Build for repository commit
+clean:
+	echo Cleaning $(NAME).
+	rm -rf composer.lock
+	rm -rf ./vendor/**
+	rm -rf ./node_modules
+
 # Install for Staging/Development
 install:
 	echo Installing $(NAME).

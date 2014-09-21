@@ -21,8 +21,14 @@
  * @module Network
  */
 
+if( file_exists( __DIR__ . '/vendor/libraries/autoload.php' ) ) {
+	include_once( __DIR__ . '/vendor/libraries/autoload.php' );
+}
+
 // Include bootstrap.
-include_once( __DIR__ . '/lib/class-bootstrap.php' );
+if( !class_exists( 'UsabilityDynamics\Network' ) )  {
+	include_once( __DIR__ . '/lib/class-bootstrap.php' );
+}
 
 // Initialize.
 new UsabilityDynamics\Network\Bootstrap();
