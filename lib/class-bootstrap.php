@@ -78,14 +78,58 @@ namespace UsabilityDynamics\Network {
         self::$path = untrailingslashit( plugin_dir_path( dirname( __DIR__ ) ) );
         self::$url  = untrailingslashit( plugin_dir_url( dirname( __DIR__ ) ) );
 
-        // Initialize hooks.
-        // add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
         add_action( 'plugins_loaded', array( &$this, 'plugins_loaded' ) );
 
         add_action( 'blog_option_upload_path', array( &$this, 'wpmn_fix_subsite_upload_path' ), 10, 2 );
 
-        // Register activation hook -> has to be in the main plugin file
+	      add_filter( 'bulk_actions-sites-network', function( $actions ) {
+		      return $actions;
+	      });
+
+	      add_filter( 'wpmu_blogs_columns', function ( $sites_columns ) {
+
+		      return array(
+			      'cb' => '<input type="checkbox" />',
+			      //'blogname' => 'Path',
+			      'domain' => 'Domain',
+			      'lastupdated' => 'Updated',
+			      'registered' => 'Registered',
+			      'users' => 'Users',
+			      //'id' => 'Site ID'
+
+		      );
+
+	      });
+
+	      add_filter( 'manage_sites_action_links', function ( $links, $id, $name ) {
+					return $links;
+	      }, 10, 3);
+
+	      add_filter( 'manage_sites_custom_column', function( $column_name, $site_id  ) {
+
+		      $blog = (array) get_blog_details($site_id);
+
+		      switch( $column_name ) {
+
+			      case 'id':
+				      ?><a href="<?php echo esc_url( network_admin_url( 'site-info.php?id=' . $blog['blog_id'] ) ); ?>"><?php echo $blog[ 'blog_id' ]; ?></a><?php
+			      break;
+
+			      case 'domain':
+				      ?><a href="<?php echo esc_url( network_admin_url( 'site-info.php?id=' . $blog['blog_id'] ) ); ?>" class="edit"><?php echo $blog[ 'domain' ]; ?></a><?php
+
+				      // echo $blog['blog_id'];
+			      break;
+
+		      }
+
+	      }, 10, 2 );
+
+	      // Register activation hook -> has to be in the main plugin file
         // register_deactivation_hook( __FILE__, array( $this, 'handle_deactivation' ) );
+
+	      // Initialize hooks.
+	      // add_action( 'after_setup_theme', array( $this, 'after_setup_theme' ) );
 
       }
 
@@ -278,7 +322,7 @@ namespace UsabilityDynamics\Network {
         add_submenu_page( 'networks', esc_html__( 'All Networks' ), esc_html__( 'All Networks' ), 'manage_options', 'networks', array( $this, 'networks_page' ) );
         add_submenu_page( 'networks', esc_html__( 'Add New' ), esc_html__( 'Add New' ), 'manage_options', 'add-new-network', array( $this, 'add_network_page' ) );
 
-        add_filter( 'manage_' . $page . '-network' . '_columns', array( new \UsabilityDynamics\Network\List_Table(), 'get_columns' ), 0 );
+        add_filter( 'manage_' . $page . '-network_columns', array( new List_Table(), 'get_columns' ), 0 );
 
       }
 
@@ -388,7 +432,7 @@ namespace UsabilityDynamics\Network {
        * @uses \UsabilityDynamics\Network\List_Table List_Table iterator for networks
        */
       function all_networks() {
-        $wp_list_table = new \UsabilityDynamics\Network\List_Table();
+        $wp_list_table = new List_Table();
         $wp_list_table->prepare_items(); ?>
 
         <div class="wrap">

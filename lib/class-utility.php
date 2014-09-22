@@ -333,7 +333,7 @@ namespace UsabilityDynamics\Network {
        *
        * @return \UsabilityDynamics\Network\WP_Error
        */
-      function update_network( $id, $domain, $path = '' ) {
+      static function update_network( $id, $domain, $path = '' ) {
         global $wpdb;
 
         $id = (int) $id;
