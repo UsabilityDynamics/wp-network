@@ -1,0 +1,47 @@
+{
+  "name": "usabilitydynamics/wp-network",
+  "description": "WordPress Network",
+  "homepage": "https://github.com/UsabilityDynamics/wp-network",
+  "keywords": [
+    "wordpress",
+    "multisite",
+    "varnish"
+  ],
+  "license": "MIT",
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "Andy Potanin",
+      "homepage": "http://usabilitydynamics.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "http://repository.usabilitydynamics.com"
+    },
+    {
+      "type":"composer",
+      "url":"http://wpackagist.org"
+    }
+  ],
+  "config": {
+    "preferred-install": "source",
+    "github-protocols": [ "ssh" ],
+    "vendor-dir": "vendor/libraries",
+    "bin-dir": "vendor/bin",
+    "optimize-autoloader": true
+  },
+  "require": {
+    "php": ">=5.3",
+    "usabilitydynamics/lib-settings": "0.2.2",
+    "usabilitydynamics/lib-ui": "master"
+  },
+  "autoload": {
+    "classmap": [
+      "lib/class-bootstrap.php",
+      "lib/class-utility.php",
+      "lib/class-list-table.php"
+    ]
+  }
+}
