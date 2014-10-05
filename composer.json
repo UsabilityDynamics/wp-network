@@ -26,16 +26,15 @@
     }
   ],
   "config": {
-    "preferred-install": "source",
+    "preferred-install": "dist",
     "github-protocols": [ "ssh" ],
-    "vendor-dir": "vendor/libraries",
+    "vendor-dir": "vendor",
     "bin-dir": "vendor/bin",
     "optimize-autoloader": true
   },
   "require": {
     "php": ">=5.3",
-    "usabilitydynamics/lib-settings": "0.2.2",
-    "usabilitydynamics/lib-ui": "master"
+    "usabilitydynamics/lib-settings": "0.2.2"
   },
   "autoload": {
     "classmap": [

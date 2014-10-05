@@ -15,26 +15,18 @@ build:
 	composer install --prefer-dist --no-dev --no-interaction
 	grunt build
 
-# Build for repository commit
-push:
-	echo Pushing $(NAME).
-	rm -rf composer.lock
-	composer update --prefer-dist --no-dev --no-interaction
-	git add . --all
-	git commit -m '[ci skip]'
-	git push
-
-# Build for repository commit
-clean:
-	echo Cleaning $(NAME).
-	rm -rf composer.lock
-	rm -rf ./vendor/**
-	rm -rf ./node_modules
-
-# Install for Staging/Development
+# Build for Distribution
 install:
-	echo Installing $(NAME).
-	npm install --production
-	npm install --development
-	composer install --prefer-source --dev --no-interaction
-	grunt install
+	@echo Installing $(NAME).
+	rm -rf composer.lock
+	rm -rf vendor
+	composer update --prefer-dist --no-dev --no-interaction
+
+# Build for repository commit
+release:
+	make install
+	rm -rf vendor/composer/installers
+	git rm --cached -r --ignore-unmatch vendor/usabilitydynamics/lib-settings
+	git rm --cached -r --ignore-unmatch vendor/usabilitydynamics/lib-ui
+	git rm --cached -r --ignore-unmatch vendor/usabilitydynamics/lib-utility
+	git add . --all && git commit -m '[ci skip]' && git push

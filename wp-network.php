@@ -3,7 +3,7 @@
  * Plugin Name: WP-Network
  * Plugin URI: http://usabilitydynamics.com/
  * Description: Network management.
- * Version: 0.2.0
+ * Version: 0.2.1
  * Author: Usability Dynamics
  * Author URI: http://usabilitydynamics.com/
  * License: GPLv2 or later
@@ -21,8 +21,8 @@
  * @module Network
  */
 
-if( file_exists( __DIR__ . '/vendor/libraries/autoload.php' ) ) {
-	include_once( __DIR__ . '/vendor/libraries/autoload.php' );
+if( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+	include_once( __DIR__ . '/vendor/autoload.php' );
 }
 
 // Include bootstrap.
