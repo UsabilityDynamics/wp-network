@@ -3,7 +3,7 @@
  * Plugin Name: WP-Network
  * Plugin URI: http://usabilitydynamics.com/
  * Description: Network management.
- * Version: 0.2.1
+ * Version: 0.2.2
  * Author: Usability Dynamics
  * Author URI: http://usabilitydynamics.com/
  * License: GPLv2 or later
