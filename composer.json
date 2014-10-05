@@ -1,6 +1,7 @@
 {
   "name": "usabilitydynamics/wp-network",
   "description": "WordPress Network",
+  "type": "wordpress-plugin",
   "homepage": "https://github.com/UsabilityDynamics/wp-network",
   "keywords": [
     "wordpress",
@@ -34,6 +35,7 @@
   },
   "require": {
     "php": ">=5.3",
+    "composer/installers": "v1.0.18",
     "usabilitydynamics/lib-settings": "0.2.2"
   },
   "autoload": {
