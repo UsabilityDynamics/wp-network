@@ -27,6 +27,5 @@ release:
 	make install
 	rm -rf vendor/composer/installers
 	git rm --cached -r --ignore-unmatch vendor/usabilitydynamics/lib-settings
-	git rm --cached -r --ignore-unmatch vendor/usabilitydynamics/lib-ui
 	git rm --cached -r --ignore-unmatch vendor/usabilitydynamics/lib-utility
 	git add . --all && git commit -m '[ci skip]' && git push
