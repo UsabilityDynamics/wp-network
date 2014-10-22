@@ -8,6 +8,7 @@
  * Author URI: http://usabilitydynamics.com/
  * License: GPLv2 or later
  * Network: True
+ * GitHub Plugin URI: https://github.com/UsabilityDynamics/wp-network
  *
  * The Loder class is self-initializing.
  *
